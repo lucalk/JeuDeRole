@@ -1,4 +1,4 @@
-Nom;Dé;Dé max;Multiplicateur critique;Déclencheur critique
+nom;nombreDes;valeurDeMax;multiplicateurCritique;activationCritique
 Gun;3;50;2;2
 Meito;1;110;13;3
 Epee tres longue;78;500;45;1
