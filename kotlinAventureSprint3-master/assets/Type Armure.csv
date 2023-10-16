@@ -1,5 +1,7 @@
-Nom ;Bonus type
-enfants;999999999
-CpeutEtreMoi;200
-cailloux;132
-marrant;30
+Nom ;bonusType
+Rembourré;1
+Cuir;2
+Cuir clouté;3
+Chemise à chaîne;4
+Pectoral;5
+Cotte de mailles;6
