@@ -8,6 +8,10 @@ import qualites
 import typeArmes
 import monstres
 import armes
+import armures
+import bombe
+import model.item.Item
+import potion
 
 /**
  * La classe GenerateurArmes permet de générer des objets de type Arme à partir d'un fichier CSV.
@@ -27,14 +31,41 @@ class GenerateurMonstres(val cheminFichier: String) {
         val cheminCSV = Paths.get(this.cheminFichier)
         val listeObjCSV = Files.readAllLines(cheminCSV)
 
+
         // Instance des objets :
         for (i in 1..listeObjCSV.lastIndex) {
+
+            val inventaire = mutableListOf<Item>()
             val ligneObjet = listeObjCSV[i].split(";")
+
+
+            val listeNomArme= ligneObjet[9].split(".")
+            for(nomArme in listeNomArme ){
+                inventaire.add(armes[nomArme]!!)
+            }
+
+            val listeNomArmure= ligneObjet[10].split(".")
+            for(nomArmure in listeNomArmure ){
+                inventaire.add(armures[nomArmure]!!)
+            }
+
+            val listeNomBombe= ligneObjet[11].split(".")
+            for(nomBombe in listeNomBombe ){
+                inventaire.add(bombe[nomBombe]!!)
+            }
+
+            val listeNomPotion= ligneObjet[12].split(".")
+            for(nomPotion in listeNomPotion){
+                inventaire.add(potion[nomPotion]!!)
+            }
+
+
+
             val cle = ligneObjet[0].lowercase()
             val objet = Personnage(nom = ligneObjet[0], pointDeVie = ligneObjet[1].toInt(), pointDeVieMax = ligneObjet[2].toInt(),
                 attaque = ligneObjet[3].toInt(), defense = ligneObjet[4].toInt(), endurance = ligneObjet[5].toInt(),
-                vitesse = ligneObjet[6].toInt(), armeEquipee = Arme[ligneObjet[7]], armureEquipee = Armure[ligneObjet[8]]!!,
-                inventaire = ligneObjet[9]
+                vitesse = ligneObjet[6].toInt(), armeEquipee = armes[ligneObjet[7]]!!, armureEquipee = armures[ligneObjet[8]]!!,
+                inventaire =  inventaire,)
             mapObjets[cle] = objet
         }
         return mapObjets
